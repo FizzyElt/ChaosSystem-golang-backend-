@@ -6,7 +6,6 @@ import (
 
 const count int = 3000
 
-
 //座標
 type Coordinate struct {
 	X float64 `json:"x"`
@@ -29,10 +28,7 @@ func (l *List) TinkerBell() bool {
 	var nextX float64 = 0
 	var nextY float64 = 0
 	for i := 0; i < count; i++ {
-		coordinate := &Coordinate{
-			X: math.Trunc(xn*1000) / 1000,
-			Y: math.Trunc(yn*1000) / 1000,
-		}
+		coordinate := createCoordinate(xn, yn)
 		l.list = append(l.list, coordinate)
 		nextX = (xn * xn) - (yn * yn) + (0.9 * xn) + (-0.6013 * yn)
 		nextY = (2 * xn * yn) + (2 * xn) + (0.5 * yn)
@@ -47,10 +43,7 @@ func (l *List) Duffing() bool {
 	var nextX float64 = 0
 	var nextY float64 = 0
 	for i := 0; i < count; i++ {
-		coordinate := &Coordinate{
-			X: math.Trunc(xn*1000) / 1000,
-			Y: math.Trunc(yn*1000) / 1000,
-		}
+		coordinate := createCoordinate(xn, yn)
 		l.list = append(l.list, coordinate)
 		nextX = yn
 		nextY = -(0.2 * xn) + (2.75 * yn) - (yn * yn * yn)
@@ -65,10 +58,7 @@ func (l *List) Henon() bool {
 	var nextX float64 = 0
 	var nextY float64 = 0
 	for i := 0; i < count; i++ {
-		coordinate := &Coordinate{
-			X: math.Trunc(xn*1000) / 1000,
-			Y: math.Trunc(yn*1000) / 1000,
-		}
+		coordinate := createCoordinate(xn, yn)
 		l.list = append(l.list, coordinate)
 		nextX = 1 - (1.4 * xn * xn) + yn
 		nextY = 0.3 * xn
@@ -78,7 +68,13 @@ func (l *List) Henon() bool {
 	return true
 }
 
-
 func (l *List) GetData() []*Coordinate {
 	return l.list
+}
+
+func createCoordinate(x, y float64) *Coordinate {
+	return &Coordinate{
+		X: math.Trunc(x*1000) / 1000,
+		Y: math.Trunc(y*1000) / 1000,
+	}
 }

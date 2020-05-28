@@ -1,6 +1,6 @@
 var cv = document.getElementById('canvas')
 var ctx = cv.getContext('2d')
-var counter = document.getElementById("counter")
+var counter = document.getElementById('counter')
 var drawBtn = document.getElementById('dot')
 var tinkerbellBtn = document.getElementById('tinkerbell-btn')
 var duffingBtn = document.getElementById('duffing-btn')
@@ -8,18 +8,14 @@ var henonBtn = document.getElementById('henon-btn')
 var title = document.getElementById('title')
 var formula = document.querySelector('.formula-box')
 
-
-
 let count = 1
 let data = []
-
 
 let drawInterval
 
 //當前選擇的混沌系統
 let selectSystem = new TinkerBell()
 let current = 'tinkerbell'
-
 
 //運算式
 const tinkerbellFormula = `
